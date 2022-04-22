@@ -2,7 +2,9 @@
     "private": true,
     "scripts": {
         "dev": "vite",
-        "build": "vite build"
+        "dev:ssr": "node public/build/ssr.js",
+        "build": "vite build",
+        "build:ssr": "vite build --ssr"
     },
     "devDependencies": {
         "@quasar/vite-plugin": "^1.0.9",

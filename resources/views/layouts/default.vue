@@ -12,7 +12,7 @@
 <script setup>
 // This is a peristent layout
 // Include me with <template layout="default" />
-import { ref, watch } from "vue";
+
 import { useMainStore } from "@/stores/main";
 import LayoutHeader from "@/views/components/layouts/header.vue";
 import LayoutDrawer from "@/views/components/layouts/drawer.vue";

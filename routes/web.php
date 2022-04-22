@@ -16,3 +16,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return inertia('home');
 });
+
+Route::get('/settings', function () {
+    return inertia('settings');
+});
+
+Route::get('/logout', function () {
+    return inertia('home');
+});

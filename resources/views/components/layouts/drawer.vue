@@ -7,6 +7,7 @@
             size="3px"
             skip-hijack
         />
+
         <q-drawer
             :model-value="main.drawer"
             :width="250"
@@ -16,58 +17,64 @@
         >
             <q-scroll-area class="fit">
                 <q-list dense class="app-menu">
-                    <q-item
-                        clickable
-                        @click="visit('/')"
-                        active-class="app-menu-active"
-                        :active="$page.component === 'home'"
-                    >
-                        <q-item-section avatar>
-                            <q-icon name="dashboard" color="primary" />
-                        </q-item-section>
-                        <q-item-section> Dashboard </q-item-section>
-                    </q-item>
-
-                    <q-expansion-item dense :content-inset-level="0.1">
-                        <template v-slot:header>
-                            <q-item-section avatar>
-                                <q-icon name="settings" color="primary" />
-                            </q-item-section>
-
-                            <q-item-section> Settings </q-item-section>
+                    <template v-for="(menu, key) in menus" :key="key">
+                        <template v-if="menu.childern.length == 0">
+                            <MenuItem :menu="menu" />
                         </template>
 
-                        <q-item dense clickable>
-                            <q-item-section avatar>
-                                <q-icon name="chevron_right" color="primary" />
-                            </q-item-section>
-                            <q-item-section> General </q-item-section>
-                        </q-item>
+                        <template v-if="menu.childern.length > 0">
+                            <MenuItem
+                                dense
+                                expansion
+                                :menu="menu"
+                                :content-inset-level="0.1"
+                            >
+                                <template
+                                    v-for="(menu2, key2) in menu.childern"
+                                    :key="key2"
+                                >
+                                    <template
+                                        v-if="menu2.childern.length === 0"
+                                    >
+                                        <MenuItem
+                                            dense
+                                            clickable
+                                            :menu="menu2"
+                                        />
+                                    </template>
 
-                        <q-expansion-item dense :content-inset-level="0.1">
-                            <template v-slot:header>
-                                <q-item-section avatar>
-                                    <q-icon
-                                        name="chevron_right"
-                                        color="primary"
-                                    />
-                                </q-item-section>
-
-                                <q-item-section> User </q-item-section>
-                            </template>
-
-                            <q-item dense clickable :inset-level="1">
-                                <q-item-section> Avatar </q-item-section>
-                            </q-item>
-                        </q-expansion-item>
-                    </q-expansion-item>
-
-                    <q-item clickable>
-                        <q-item-section avatar>
-                            <q-icon name="logout" color="primary" />
-                        </q-item-section>
-                        <q-item-section> Logout </q-item-section>
-                    </q-item>
+                                    <template v-if="menu2.childern.length > 0">
+                                        <MenuItem
+                                            dense
+                                            expansion
+                                            :menu="menu2"
+                                            :content-inset-level="0.1"
+                                        >
+                                            <template
+                                                v-for="(
+                                                    menu3, key3
+                                                ) in menu2.childern"
+                                                :key="key3"
+                                            >
+                                                <template
+                                                    v-if="
+                                                        menu3.childern
+                                                            .length === 0
+                                                    "
+                                                >
+                                                    <MenuItem
+                                                        dense
+                                                        clickable
+                                                        :menu="menu3"
+                                                    />
+                                                </template>
+                                            </template>
+                                        </MenuItem>
+                                    </template>
+                                </template>
+                            </MenuItem>
+                        </template>
+                    </template>
                 </q-list>
             </q-scroll-area>
         </q-drawer>
@@ -75,39 +82,15 @@
 </template>
 
 <script setup>
+import MenuItem from "./MenuItem.vue";
 import { computed, watch, ref } from "vue";
 import { useMainStore } from "@/stores/main";
-// import { usePage } from "@inertiajs/inertia-vue3";
-import { Inertia } from "@inertiajs/inertia";
+import { usePage } from "@inertiajs/inertia-vue3";
 
 const bar = ref(null);
 const main = useMainStore();
-// const props = computed(() => usePage().props.value);
 const loadingVisit = computed(() => main.loadingVisit);
-
-const defaultConfig = {
-    method: "get",
-    data: {},
-    replace: false,
-    preserveState: false,
-    preserveScroll: false,
-    only: [],
-    headers: {},
-    errorBag: null,
-    forceFormData: false,
-    onCancelToken: (cancelToken) => {},
-    onCancel: () => {},
-    onBefore: (visit) => {},
-    onStart: (visit) => {
-        main.loadingVisit = true;
-    },
-    onProgress: (progress) => {},
-    onSuccess: (page) => {},
-    onError: (errors) => {},
-    onFinish: (visit) => {
-        main.loadingVisit = false;
-    },
-};
+const menus = computed(() => usePage().props.value.menus);
 
 watch(loadingVisit, (loading) => {
     const barRef = bar.value;
@@ -117,16 +100,9 @@ watch(loadingVisit, (loading) => {
         barRef.stop();
     }
 });
-
-const visit = (url, config = {}) => {
-    Inertia.visit(url, {
-        ...defaultConfig,
-        ...config,
-    });
-};
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .app-menu {
     .q-item {
         font-size: 12px;
