@@ -9,7 +9,6 @@
     },
     "devDependencies": {
         "@quasar/vite-plugin": "^1.0.9",
-        "@soketi/soketi": "^1.0.1",
         "@vitejs/plugin-vue": "^2.3.1",
         "@vue/compiler-sfc": "^3.2.33",
         "sass": "1.32.0",
