@@ -4,10 +4,12 @@
         "dev": "vite",
         "dev:ssr": "node public/build/ssr.js",
         "build": "vite build",
-        "build:ssr": "vite build --ssr"
+        "build:ssr": "vite build --ssr",
+        "ws:start": "soketi start"
     },
     "devDependencies": {
         "@quasar/vite-plugin": "^1.0.9",
+        "@soketi/soketi": "^1.0.1",
         "@vitejs/plugin-vue": "^2.3.1",
         "@vue/compiler-sfc": "^3.2.33",
         "sass": "1.32.0",
@@ -19,8 +21,10 @@
         "@inertiajs/inertia": "^0.11.0",
         "@inertiajs/inertia-vue3": "^0.6.0",
         "@quasar/extras": "^1.13.5",
+        "laravel-echo": "^1.11.7",
         "pinia": "^2.0.13",
         "pinia-plugin-persistedstate": "^1.5.1",
+        "pusher-js": "^7.1.0-beta",
         "quasar": "^2.6.6",
         "vue": "^3.2.31"
     }

@@ -9,9 +9,10 @@ import { createApp, h } from "vue";
 import { createInertiaApp } from "@inertiajs/inertia-vue3";
 import { importPageComponent } from "@/scripts/vite/import-page-component";
 
-import store from "@/stores";
+import store from "../stores";
 import { Quasar } from "quasar";
 import quasaOptions from "./quasar.conf";
+import { localPlugins } from "../plugins";
 
 createInertiaApp({
     resolve: (name) =>
@@ -23,6 +24,7 @@ createInertiaApp({
         App.use(Quasar, quasaOptions);
         App.use(plugin);
 
+        App.use(localPlugins, props);
         App.mount(el);
     },
 });
