@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+        "allowJs": true,
         "target": "esnext",
         "module": "esnext",
         "moduleResolution": "node",
@@ -25,6 +26,9 @@
             ],
             "assets/*": [
                 "resources/assets/*"
+            ],
+            "plugins/*": [
+                "resources/plugins/*"
             ],
             "components/*": [
                 "resources/views/components/*"

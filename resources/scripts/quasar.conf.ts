@@ -1,6 +1,10 @@
 import quasarLang from "quasar/lang/id";
 
+import { Notify } from "quasar";
+
 export default {
-    plugins: {},
+    plugins: {
+        Notify,
+    },
     lang: quasarLang,
 };

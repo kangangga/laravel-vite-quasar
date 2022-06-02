@@ -13,9 +13,8 @@ return [
     'configs' => [
         'default' => [
             'entrypoints' => [
-                'ssr' => 'resources/scripts/ssr.js',
                 'paths' => [
-                    'resources/scripts/main.js'
+                    'resources/scripts/main.ts'
                 ],
                 'ignore' => '/\\.(d\\.ts|json)$/',
             ],
@@ -24,7 +23,7 @@ return [
                 'url' => env('DEV_SERVER_URL', 'http://localhost:3000'),
                 'ping_before_using_manifest' => true,
                 'ping_url' => null,
-                'ping_timeout' => 1,
+                'ping_timeout' => 2,
                 'key' => env('DEV_SERVER_KEY'),
                 'cert' => env('DEV_SERVER_CERT'),
             ],
@@ -45,6 +44,7 @@ return [
         '@' => 'resources',
         'store' => 'resources/stores',
         'assets' => 'resources/assets',
+        'plugins' => 'resources/plugins',
         'components' => 'resources/views/components'
     ],
 
@@ -77,7 +77,7 @@ return [
     | https://laravel-vite.dev/configuration/laravel-package.html#testing
     */
     'testing' => [
-        'use_manifest' => false,
+        'use_manifest' => true,
     ],
 
     /*

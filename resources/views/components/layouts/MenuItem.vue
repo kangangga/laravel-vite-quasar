@@ -83,7 +83,7 @@ const visit = (url, config = {}) => {
 };
 
 const isActive = (page, menu) => {
-    if (menu.childern.length > 0) {
+    if (menu.children.length > 0) {
         return page.url.startsWith(menu.url);
     }
 

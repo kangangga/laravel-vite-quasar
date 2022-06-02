@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Menu;
 use App\Models\User;
 use Illuminate\Support\Collection;
 
@@ -15,32 +16,19 @@ class MenuService
         $this->makeMenu();
     }
 
+    public static function createMenu($data)
+    {
+        unset($data['children']);
+        return Menu::firstOrCreate($data);
+    }
+
     private function makeMenu()
     {
-        $this->items = collect([
-            [
-                'url' => '/',
-                'name' => 'Dashboard',
-                'icon' => 'dashboard',
-                'is_active' => true,
-                'childern' => [],
-            ],
-            [
-                'url' => '/settings',
-                'name' => 'Settings',
-                'icon' => 'settings',
-                'is_active' => true,
-                'childern' => [],
-            ],
-            [
-                'url' => '/logout',
-                'name' => 'Logout',
-                'icon' => 'logout',
-                'is_active' => true,
-                'childern' => [],
-            ],
-
-        ]);
+        $this->items = Menu::with(['children', 'children.children'])
+            ->where('is_active', true)
+            ->where('parent_id', 0)
+            ->orderBy('order_no')
+            ->get();
     }
 
     public function get()

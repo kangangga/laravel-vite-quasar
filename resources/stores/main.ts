@@ -8,10 +8,10 @@ export const useMainStore = defineStore("main", {
         };
     },
     actions: {
-        setDrawer(value) {
+        setDrawer(value: any) {
             this.drawer = value;
         },
-        setLoadingVisit(value) {
+        setLoadingVisit(value: any) {
             this.loadingVisit = value;
         },
     },

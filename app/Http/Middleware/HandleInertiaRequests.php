@@ -2,8 +2,9 @@
 
 namespace App\Http\Middleware;
 
-use Illuminate\Http\Request;
+use App\Facades\Menu;
 use Inertia\Middleware;
+use Illuminate\Http\Request;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -38,11 +39,17 @@ class HandleInertiaRequests extends Middleware
     {
         return array_merge(parent::share($request), [
             'user' => auth()->user(),
-            'menus' => app('menu')->get(),
+            'menus' => Menu::get(),
             'versions' => [
                 'php' => PHP_VERSION,
                 'laravel' => \Illuminate\Foundation\Application::VERSION
             ],
+            'flash' => [
+                'positive' => fn () => $request->session()->get('success'),
+                'negative' => fn () => $request->session()->get('error'),
+                'warning' => fn () => $request->session()->get('warning'),
+                'info' => fn () => $request->session()->get('info'),
+            ]
         ]);
     }
 }

@@ -1,3 +1,5 @@
+// Import Tailwind css
+import "../css/tailwind.css";
 // Import Quasar css
 import "quasar/src/css/index.sass";
 

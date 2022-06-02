@@ -18,11 +18,11 @@
             <q-scroll-area class="fit">
                 <q-list dense class="app-menu">
                     <template v-for="(menu, key) in menus" :key="key">
-                        <template v-if="menu.childern.length == 0">
+                        <template v-if="menu.children.length == 0">
                             <MenuItem :menu="menu" />
                         </template>
 
-                        <template v-if="menu.childern.length > 0">
+                        <template v-if="menu.children.length > 0">
                             <MenuItem
                                 dense
                                 expansion
@@ -30,11 +30,11 @@
                                 :content-inset-level="0.1"
                             >
                                 <template
-                                    v-for="(menu2, key2) in menu.childern"
+                                    v-for="(menu2, key2) in menu.children"
                                     :key="key2"
                                 >
                                     <template
-                                        v-if="menu2.childern.length === 0"
+                                        v-if="menu2.children.length === 0"
                                     >
                                         <MenuItem
                                             dense
@@ -43,7 +43,7 @@
                                         />
                                     </template>
 
-                                    <template v-if="menu2.childern.length > 0">
+                                    <template v-if="menu2.children.length > 0">
                                         <MenuItem
                                             dense
                                             expansion
@@ -53,12 +53,12 @@
                                             <template
                                                 v-for="(
                                                     menu3, key3
-                                                ) in menu2.childern"
+                                                ) in menu2.children"
                                                 :key="key3"
                                             >
                                                 <template
                                                     v-if="
-                                                        menu3.childern
+                                                        menu3.children
                                                             .length === 0
                                                     "
                                                 >
