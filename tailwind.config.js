@@ -1,9 +1,5 @@
 module.exports = {
-    content: [
-        "./storage/framework/views/*.php",
-        "./resources/**/*.blade.php",
-        "./resources/**/*.{vue,js,ts,jsx,tsx}",
-    ],
+    prefix: "tw-",
     darkMode: "media",
     theme: {
         extend: {},
@@ -12,4 +8,9 @@ module.exports = {
         extend: {},
     },
     plugins: [],
+    content: [
+        "./storage/framework/views/*.php",
+        "./resources/**/*.blade.php",
+        "./resources/**/*.{vue,js,ts,jsx,tsx}",
+    ],
 };

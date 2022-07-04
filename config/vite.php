@@ -42,10 +42,12 @@ return [
     */
     'aliases' => [
         '@' => 'resources',
+        '@storage' => 'storage/app',
+        '@public' => 'storage/app/public',
         'store' => 'resources/stores',
         'assets' => 'resources/assets',
         'plugins' => 'resources/plugins',
-        'components' => 'resources/views/components'
+        'components' => 'resources/views/components',
     ],
 
     /*

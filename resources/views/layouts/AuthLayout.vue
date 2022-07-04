@@ -11,10 +11,9 @@ import { Notify } from "quasar";
 import { computed, watch } from "vue";
 import { usePage } from "@inertiajs/inertia-vue3";
 
-import { useRegisterSW } from "virtual:pwa-register/vue";
+// import { useRegisterSW } from "virtual:pwa-register/vue";
+// const { offlineReady, needRefresh, updateServiceWorker } = useRegisterSW();
 
-const { offlineReady, needRefresh, updateServiceWorker } = useRegisterSW();
-console.log(offlineReady);
 const flash = computed(() => usePage().props.value.flash);
 watch(flash, (value: any) => {
     for (const key in value) {
